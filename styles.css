@@ -1,0 +1,59 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: black;
+    font-family: 'Bebas Neue', monospace;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.timer {
+    display: flex;
+    font-size: calc(80vmin);
+    color: white;
+    user-select: none;
+    text-transform: uppercase;
+    font-variant-numeric: lining-nums;
+}
+
+.separator {
+    margin: 0 0.1em;
+}
+
+.control {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    font-size: calc(80vmin);
+    color: white;
+    user-select: none;
+}
+.control-separator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: calc(80vmin);
+    font-weight: 700;
+    color: white;
+    user-select: none;
+}
+
+.minutes-control {
+    padding-right: 55%;
+}
+
+.seconds-control {
+    padding-left: 55%;
+}
