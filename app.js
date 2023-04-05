@@ -7,6 +7,21 @@ const secondsControl = document.getElementById('seconds-control');
 let intervalId = null;
 let isRunning = false;
 
+minutesEl.addEventListener('click', () => {
+    if (!isRunning) {
+        toggleControls(true);
+        minutesControl.classList.add('active');
+    }
+});
+
+secondsEl.addEventListener('click', () => {
+    if (!isRunning) {
+        toggleControls(true);
+        secondsControl.classList.add('active');
+    }
+});
+
+
 function pad(num) {
     return num.toString().padStart(2, '0');
 }
@@ -64,11 +79,14 @@ function handleControlClick(event) {
     const value = parseInt(event.target.dataset.value, 10);
     if (event.currentTarget === minutesControl) {
         minutesEl.textContent = pad(value);
+        minutesControl.classList.remove('active');
     } else {
         secondsEl.textContent = pad(value);
+        secondsControl.classList.remove('active');
     }
     toggleControls(false);
 }
+
 
 createControlNumbers(minutesControl, 60);
 createControlNumbers(secondsControl, 59);
