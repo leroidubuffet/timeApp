@@ -1,13 +1,18 @@
-body {
+html, body {
     margin: 0;
-    height: 100vh;
+    height: 100%;
     background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-family: 'Bebas Neue', monospace;
     user-select: none;
     overflow: hidden;
+}
+
+#container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }
 
 #timer {
@@ -17,6 +22,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .minutes,
@@ -39,6 +45,8 @@ body {
     font-weight: 700;
     color: white;
     user-select: none;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .minutes-control {
@@ -54,9 +62,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.2;
 }
 
-.control.active div {
+.control.active {
     opacity: 1;
+    pointer-events: auto;
 }
