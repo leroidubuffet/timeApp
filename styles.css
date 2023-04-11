@@ -32,7 +32,9 @@ html, body {
 
 .separator {
     margin: 0 0.1em;
+    transform: translateY(-5%);
 }
+
 
 .control {
     display: none;
@@ -58,7 +60,7 @@ html, body {
 }
 
 .control div {
-    height: calc(80vmin / 3);
+    height: calc(80vmin / 1.25);
     display: flex;
     align-items: center;
     justify-content: center;
