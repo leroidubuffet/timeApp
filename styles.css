@@ -35,7 +35,6 @@ html, body {
     transform: translateY(-5%);
 }
 
-
 .control {
     display: none;
     position: absolute;
@@ -69,4 +68,18 @@ html, body {
 .control.active {
     opacity: 1;
     pointer-events: auto;
+}
+
+#half-time {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    font-size: 10vmin;
+    transform: translateX(-50%);
+    opacity: 0.8;
+    color: white;
+}
+
+.hidden {
+    display: none;
 }

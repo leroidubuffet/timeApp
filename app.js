@@ -3,6 +3,7 @@ const minutesEl = timerEl.querySelector('.minutes');
 const secondsEl = timerEl.querySelector('.seconds');
 const minutesControl = document.getElementById('minutes-control');
 const secondsControl = document.getElementById('seconds-control');
+const halfTimeElement = document.getElementById('half-time');
 
 let intervalId = null;
 let isRunning = false;
@@ -48,6 +49,9 @@ function toggleControls(visible) {
 
 function startTimer(minutes, seconds) {
     clearInterval(intervalId);
+    const totalTime = minutes * 60 + seconds;
+    const halfTime = totalTime / 2;
+
     intervalId = setInterval(() => {
         seconds--;
         if (seconds < 0) {
@@ -60,9 +64,18 @@ function startTimer(minutes, seconds) {
             clearInterval(intervalId);
             isRunning = false;
         }
+
+        const timeLeft = minutes * 60 + seconds;
+        if (timeLeft === halfTime) {
+            halfTimeElement.classList.remove('hidden');
+        } else if (timeLeft < halfTime) {
+            halfTimeElement.classList.add('hidden');
+        }
+
         updateDisplay(minutes, seconds);
     }, 1000);
 }
+
 
 function handleClick(event) {
     if (isRunning) {
