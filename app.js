@@ -4,9 +4,17 @@ const secondsEl = timerEl.querySelector('.seconds');
 const minutesControl = document.getElementById('minutes-control');
 const secondsControl = document.getElementById('seconds-control');
 const halfTimeElement = document.getElementById('half-time');
+const separatorEl = timerEl.querySelector('.separator');
 
 let intervalId = null;
 let isRunning = false;
+
+separatorEl.addEventListener('dblclick', () => {
+    if (!isRunning) {
+        updateDisplay(0, 0);
+        hideAllIndicators();
+    }
+});
 
 minutesEl.addEventListener('click', () => {
     if (!isRunning) {
@@ -21,7 +29,6 @@ secondsEl.addEventListener('click', () => {
         secondsControl.classList.add('active');
     }
 });
-
 
 function pad(num) {
     return num.toString().padStart(2, '0');
@@ -50,7 +57,17 @@ function toggleControls(visible) {
 function startTimer(minutes, seconds) {
     clearInterval(intervalId);
     const totalTime = minutes * 60 + seconds;
-    const halfTime = totalTime / 2;
+    const quarterTime = Math.floor(totalTime / 4);
+    const halfTime = Math.floor(totalTime / 2);
+    const thirdTime = Math.floor(totalTime / 3);
+    const twoThirdsTime = Math.floor((totalTime * 2) / 3);
+    const threeQuartersTime = Math.floor((totalTime * 3) / 4);
+    
+    const halfTimeElement = document.getElementById('half-time');
+    const quarterTimeElement = document.getElementById('quarter-time');
+    const thirdTimeElement = document.getElementById('third-time');
+    const twoThirdsTimeElement = document.getElementById('two-thirds-time');
+    const threeQuartersTimeElement = document.getElementById('three-quarters-time');
 
     intervalId = setInterval(() => {
         seconds--;
@@ -66,26 +83,38 @@ function startTimer(minutes, seconds) {
         }
 
         const timeLeft = minutes * 60 + seconds;
-        if (timeLeft === halfTime) {
+        if (timeLeft === quarterTime) {
+            hideAllIndicators();
+            quarterTimeElement.classList.remove('hidden');
+        } else if (timeLeft === halfTime) {
+            hideAllIndicators();
             halfTimeElement.classList.remove('hidden');
-        } else if (timeLeft < halfTime) {
-            halfTimeElement.classList.add('hidden');
+        } else if (timeLeft === thirdTime) {
+            hideAllIndicators();
+            thirdTimeElement.classList.remove('hidden');
+        } else if (timeLeft === twoThirdsTime) {
+            hideAllIndicators();
+            twoThirdsTimeElement.classList.remove('hidden');
+        } else if (timeLeft === threeQuartersTime) {
+            hideAllIndicators();
+            threeQuartersTimeElement.classList.remove('hidden');
         }
-
         updateDisplay(minutes, seconds);
     }, 1000);
 }
 
-
 function handleClick(event) {
+    const minutesValue = parseInt(minutesEl.textContent, 10);
+    const secondsValue = parseInt(secondsEl.textContent, 10);
+
     if (isRunning) {
         clearInterval(intervalId);
         toggleControls(true);
-    } else {
-        startTimer(parseInt(minutesEl.textContent, 10), parseInt(secondsEl.textContent, 10));
+    } else if (minutesValue !== 0 || secondsValue !== 0) {
+        startTimer(minutesValue, secondsValue);
         toggleControls(false);
     }
-    isRunning = !isRunning;
+    isRunning = !isRunning && (minutesValue !== 0 || secondsValue !== 0);
 }
 
 function handleControlClick(event) {
@@ -100,6 +129,11 @@ function handleControlClick(event) {
     toggleControls(false);
 }
 
+function hideAllIndicators() {
+    document.querySelectorAll('.indicator').forEach(indicator => {
+        indicator.classList.add('hidden');
+    });
+}
 
 createControlNumbers(minutesControl, 60);
 createControlNumbers(secondsControl, 59);

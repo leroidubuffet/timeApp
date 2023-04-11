@@ -33,7 +33,7 @@ html, body {
 .separator {
     margin: 0 0.1em;
     transform: translateY(-7%);
-    /* transform: translateX(5%); */
+    margin: 0 0.05em 0 0em;
 }
 
 .control {
@@ -71,12 +71,17 @@ html, body {
     pointer-events: auto;
 }
 
+#quarter-time,
+#third-time,
+#two-thirds-time,
+#three-quarters-time,
 #half-time {
     position: absolute;
-    bottom: 0;
+    top: 48%;
     left: 50%;
-    font-size: 10vmin;
-    transform: translateX(-50%);
+    font-size: 15vmin;
+    transform: translate(-50%, -50%);
+    margin: 0 0.05em 0 -0.12em;
     opacity: 0.8;
     color: white;
 }
