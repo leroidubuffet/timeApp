@@ -98,6 +98,8 @@ function startTimer(minutes, seconds) {
         } else if (timeLeft === threeQuartersTime) {
             hideAllIndicators();
             threeQuartersTimeElement.classList.remove('hidden');
+        } else if (timeLeft === 0) {
+            hideAllIndicators();
         }
         updateDisplay(minutes, seconds);
     }, 1000);
