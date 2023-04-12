@@ -108,7 +108,7 @@ function startTimer(minutes, seconds) {
         }
 
         const timeLeft = minutes * 60 + seconds;
-        if (timeLeft === halfTime) {
+        if (timeLeft === halfTime && totalTime >= 120) {
             hideAllMessages();
             halfTimeGoneElement.classList.remove('hidden');
         } else if (timeLeft === fiveMinutesLeft && totalTime >= 600) {

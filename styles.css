@@ -51,7 +51,7 @@ html, body {
 }
 
 .minutes-control {
-    left: 0;
+    left: -1.8%;
 }
 
 .seconds-control {
@@ -70,8 +70,6 @@ html, body {
     pointer-events: auto;
 }
 
-#quarter-time,
-#three-quarters-time,
 #half-time {
     position: absolute;
     top: 48%;
