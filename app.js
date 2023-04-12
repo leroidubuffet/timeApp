@@ -86,15 +86,11 @@ function toggleControls(visible) {
 function startTimer(minutes, seconds) {
     clearInterval(intervalId);
     const totalTime = minutes * 60 + seconds;
-    const quarterTime = Math.floor(totalTime / 4);
     const halfTime = Math.floor(totalTime / 2);
-    const threeQuartersTime = Math.floor((totalTime * 3) / 4);
     const fiveMinutesLeft = 5 * 60;
     const oneMinuteLeft = 60;
 
-    const halfTimeElement = document.getElementById('half-time');
-    const quarterTimeElement = document.getElementById('quarter-time');
-    const threeQuartersTimeElement = document.getElementById('three-quarters-time');
+    const halfTimeGoneElement = document.getElementById('half-time-gone');
     const fiveMinutesLeftElement = document.getElementById('five-minutes-left');
     const oneMinuteLeftElement = document.getElementById('one-minute-left');
 
@@ -112,25 +108,16 @@ function startTimer(minutes, seconds) {
         }
 
         const timeLeft = minutes * 60 + seconds;
-        if (timeLeft === quarterTime) {
-            hideAllIndicators();
-            quarterTimeElement.classList.remove('hidden');
-        } else if (timeLeft === halfTime) {
-            hideAllIndicators();
-            halfTimeElement.classList.remove('hidden');
-        } else if (timeLeft === threeQuartersTime) {
-            hideAllIndicators();
-            threeQuartersTimeElement.classList.remove('hidden');
-        } else if (timeLeft === fiveMinutesLeft) {
-            hideAllIndicators();
+        if (timeLeft === halfTime) {
+            hideAllMessages();
+            halfTimeGoneElement.classList.remove('hidden');
+        } else if (timeLeft === fiveMinutesLeft && totalTime >= 600) {
             hideAllMessages();
             fiveMinutesLeftElement.classList.remove('hidden');
-        } else if (timeLeft === oneMinuteLeft) {
-            hideAllIndicators();
+        } else if (timeLeft === oneMinuteLeft && totalTime >= 180) {
             hideAllMessages();
             oneMinuteLeftElement.classList.remove('hidden');        
         } else if (timeLeft === 0) {
-            hideAllIndicators();
             hideAllMessages();
         }
         updateDisplay(minutes, seconds);
