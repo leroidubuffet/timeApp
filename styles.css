@@ -71,8 +71,6 @@ html, body {
 }
 
 #quarter-time,
-#third-time,
-#two-thirds-time,
 #three-quarters-time,
 #half-time {
     position: absolute;

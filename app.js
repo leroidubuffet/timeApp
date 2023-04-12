@@ -59,14 +59,10 @@ function startTimer(minutes, seconds) {
     const totalTime = minutes * 60 + seconds;
     const quarterTime = Math.floor(totalTime / 4);
     const halfTime = Math.floor(totalTime / 2);
-    const thirdTime = Math.floor(totalTime / 3);
-    const twoThirdsTime = Math.floor((totalTime * 2) / 3);
     const threeQuartersTime = Math.floor((totalTime * 3) / 4);
     
     const halfTimeElement = document.getElementById('half-time');
     const quarterTimeElement = document.getElementById('quarter-time');
-    const thirdTimeElement = document.getElementById('third-time');
-    const twoThirdsTimeElement = document.getElementById('two-thirds-time');
     const threeQuartersTimeElement = document.getElementById('three-quarters-time');
 
     intervalId = setInterval(() => {
@@ -89,12 +85,6 @@ function startTimer(minutes, seconds) {
         } else if (timeLeft === halfTime) {
             hideAllIndicators();
             halfTimeElement.classList.remove('hidden');
-        } else if (timeLeft === thirdTime) {
-            hideAllIndicators();
-            thirdTimeElement.classList.remove('hidden');
-        } else if (timeLeft === twoThirdsTime) {
-            hideAllIndicators();
-            twoThirdsTimeElement.classList.remove('hidden');
         } else if (timeLeft === threeQuartersTime) {
             hideAllIndicators();
             threeQuartersTimeElement.classList.remove('hidden');
