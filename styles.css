@@ -89,9 +89,12 @@ html, body {
 
 .message {
     position: absolute;
-    bottom: 5%;
+    top: 90%;
     left: 50%;
-    font-size: 20vmin;
+    transform: translate(-50%, -50%); /* Center the element based on its dimensions */
+    text-align: center; /* Align text within the message box */  
+    width: 80%;
+    font-size: 15vmin;
     transform: translate(-50%, -50%);
     opacity: 0.8;
     color: white;

@@ -41,6 +41,7 @@ function resetTimer() {
     if (!isRunning) {
         updateDisplay(0, 0);
         hideAllIndicators();
+        hideAllMessages();
     }
 }
 
@@ -122,13 +123,15 @@ function startTimer(minutes, seconds) {
             threeQuartersTimeElement.classList.remove('hidden');
         } else if (timeLeft === fiveMinutesLeft) {
             hideAllIndicators();
+            hideAllMessages();
             fiveMinutesLeftElement.classList.remove('hidden');
         } else if (timeLeft === oneMinuteLeft) {
             hideAllIndicators();
-            fiveMinutesLeftElement.classList.add('hidden');
+            hideAllMessages();
             oneMinuteLeftElement.classList.remove('hidden');        
         } else if (timeLeft === 0) {
             hideAllIndicators();
+            hideAllMessages();
         }
         updateDisplay(minutes, seconds);
     }, 1000);}
@@ -162,5 +165,11 @@ function handleControlClick(event) {
 function hideAllIndicators() {
     document.querySelectorAll('.indicator').forEach(indicator => {
         indicator.classList.add('hidden');
+    });
+}
+
+function hideAllMessages() {
+    document.querySelectorAll('.message').forEach(message => {
+        message.classList.add('hidden');
     });
 }
