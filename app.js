@@ -1,34 +1,62 @@
+// DOM Elements
 const timerEl = document.getElementById('timer');
 const minutesEl = timerEl.querySelector('.minutes');
 const secondsEl = timerEl.querySelector('.seconds');
+const separatorEl = timerEl.querySelector('.separator');
 const minutesControl = document.getElementById('minutes-control');
 const secondsControl = document.getElementById('seconds-control');
-const halfTimeElement = document.getElementById('half-time');
-const separatorEl = timerEl.querySelector('.separator');
 
+// State Variables
 let intervalId = null;
 let isRunning = false;
 
-separatorEl.addEventListener('dblclick', () => {
+// Event Listeners
+separatorEl.addEventListener('dblclick', resetTimer);
+minutesEl.addEventListener('click', showMinutesControl);
+secondsEl.addEventListener('click', showSecondsControl);
+timerEl.addEventListener('click', handleClick);
+minutesControl.addEventListener('click', handleControlClick);
+secondsControl.addEventListener('click', handleControlClick);
+
+// Initialize
+createControlNumbers(minutesControl, 60);
+createControlNumbers(secondsControl, 59);
+toggleControls(false);
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js').then(
+            registration => {
+                console.log('ServiceWorker registered: ', registration);
+            },
+            err => {
+                console.error('ServiceWorker registration failed: ', err);
+            }
+        );
+    });
+}
+
+// Functions
+function resetTimer() {
     if (!isRunning) {
         updateDisplay(0, 0);
         hideAllIndicators();
     }
-});
+}
 
-minutesEl.addEventListener('click', () => {
+function showMinutesControl() {
     if (!isRunning) {
         toggleControls(true);
         minutesControl.classList.add('active');
     }
-});
+}
 
-secondsEl.addEventListener('click', () => {
+function showSecondsControl() {
     if (!isRunning) {
         toggleControls(true);
         secondsControl.classList.add('active');
     }
-});
+}
 
 function pad(num) {
     return num.toString().padStart(2, '0');
@@ -60,10 +88,14 @@ function startTimer(minutes, seconds) {
     const quarterTime = Math.floor(totalTime / 4);
     const halfTime = Math.floor(totalTime / 2);
     const threeQuartersTime = Math.floor((totalTime * 3) / 4);
-    
+    const fiveMinutesLeft = 5 * 60;
+    const oneMinuteLeft = 60;
+
     const halfTimeElement = document.getElementById('half-time');
     const quarterTimeElement = document.getElementById('quarter-time');
     const threeQuartersTimeElement = document.getElementById('three-quarters-time');
+    const fiveMinutesLeftElement = document.getElementById('five-minutes-left');
+    const oneMinuteLeftElement = document.getElementById('one-minute-left');
 
     intervalId = setInterval(() => {
         seconds--;
@@ -88,12 +120,18 @@ function startTimer(minutes, seconds) {
         } else if (timeLeft === threeQuartersTime) {
             hideAllIndicators();
             threeQuartersTimeElement.classList.remove('hidden');
+        } else if (timeLeft === fiveMinutesLeft) {
+            hideAllIndicators();
+            fiveMinutesLeftElement.classList.remove('hidden');
+        } else if (timeLeft === oneMinuteLeft) {
+            hideAllIndicators();
+            fiveMinutesLeftElement.classList.add('hidden');
+            oneMinuteLeftElement.classList.remove('hidden');        
         } else if (timeLeft === 0) {
             hideAllIndicators();
         }
         updateDisplay(minutes, seconds);
-    }, 1000);
-}
+    }, 1000);}
 
 function handleClick(event) {
     const minutesValue = parseInt(minutesEl.textContent, 10);
@@ -124,26 +162,5 @@ function handleControlClick(event) {
 function hideAllIndicators() {
     document.querySelectorAll('.indicator').forEach(indicator => {
         indicator.classList.add('hidden');
-    });
-}
-
-createControlNumbers(minutesControl, 60);
-createControlNumbers(secondsControl, 59);
-toggleControls(false);
-
-timerEl.addEventListener('click', handleClick);
-minutesControl.addEventListener('click', handleControlClick);
-secondsControl.addEventListener('click', handleControlClick);
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js').then(
-            registration => {
-                console.log('ServiceWorker registered: ', registration);
-            },
-            err => {
-                console.error('ServiceWorker registration failed: ', err);
-            }
-        );
     });
 }
