@@ -48,14 +48,17 @@ html, body {
     user-select: none;
     opacity: 0;
     pointer-events: none;
+    letter-spacing: 0.05em;
 }
 
 .minutes-control {
-    left: -1.8%;
+    padding-top: 9.8%;
+    left: 0.35%;
 }
 
 .seconds-control {
-    left: 50%;
+    padding-top: 9.8%;
+    left: 49.5%;
 }
 
 .control div {
