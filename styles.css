@@ -19,6 +19,16 @@ body {
 	height: 100vh; /* viewport height */
   }
   
+  .control-timer input::-webkit-outer-spin-button,
+  .control-timer input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+  }
+  
+  .control-timer input[type="number"] {
+	-moz-appearance: textfield;
+  }
+
   .timer {
 	font-family: 'Bebas Neue', sans-serif;
 	color: white;
