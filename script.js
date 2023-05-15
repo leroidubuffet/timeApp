@@ -43,7 +43,8 @@ function updateCountdown() {
     timer = null;
   }
 }
-
+minutesElement.value = "00";
+secondsElement.value = "00";
 // Add wheel event listener to increment or decrement the value
 minutesElement.addEventListener('wheel', function(event) {
   event.preventDefault();
