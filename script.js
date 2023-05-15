@@ -23,26 +23,40 @@ function updateCountdown() {
   }
 }
 
-minutesElement.addEventListener('change', function() {
-  countdown = minutesElement.value * 60 + secondsElement.value * 1; // Multiply minutes by 60 to convert to seconds
-  updateCountdown();
+// Add wheel event listener to increment or decrement the value
+minutesElement.addEventListener('wheel', function(event) {
+  event.preventDefault();
+  let newValue = parseInt(minutesElement.value) - Math.sign(event.deltaY);
+  if(newValue >= 0 && newValue <= 59) {
+    minutesElement.value = newValue.toString().padStart(2, '0');
+    countdown = minutesElement.value * 60 + secondsElement.value * 1; // Multiply minutes by 60 to convert to seconds
+    updateCountdown();
+  }
 });
 
-secondsElement.addEventListener('change', function() {
-  countdown = minutesElement.value * 60 + secondsElement.value * 1; // Multiply minutes by 60 to convert to seconds
-  updateCountdown();
+secondsElement.addEventListener('wheel', function(event) {
+  event.preventDefault();
+  let newValue = parseInt(secondsElement.value) - Math.sign(event.deltaY);
+  if(newValue >= 0 && newValue <= 59) {
+    secondsElement.value = newValue.toString().padStart(2, '0');
+    countdown = minutesElement.value * 60 + secondsElement.value * 1; // Multiply minutes by 60 to convert to seconds
+    updateCountdown();
+  }
 });
-
-// Start the countdown
-timer = setInterval(updateCountdown, 1000);
 
 // Hide the control timer and start the countdown when the inputs lose focus
 minutesElement.addEventListener('blur', function() {
   controlTimerElement.style.display = 'none';
-  timer = setInterval(updateCountdown, 1000);
+  if (timer !== null) { // Check if a timer is already running
+    clearInterval(timer); // Clear the existing timer
+  }
+  timer = setInterval(updateCountdown, 1000); // Start a new timer
 });
 
 secondsElement.addEventListener('blur', function() {
   controlTimerElement.style.display = 'none';
-  timer = setInterval(updateCountdown, 1000);
+  if (timer !== null) { // Check if a timer is already running
+    clearInterval(timer); // Clear the existing timer
+  }
+  timer = setInterval(updateCountdown, 1000); // Start a new timer
 });
