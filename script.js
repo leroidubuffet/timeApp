@@ -7,6 +7,10 @@ let timer = null;
 let countdown = 0;
 let timerRunning = false;
 
+let deltaThreshold = 100;
+let deltaAccumulator = 0;
+
+
 timerElement.addEventListener('dblclick', function() {
   // Show the control timer
   controlTimerElement.style.display = 'flex';
@@ -40,27 +44,35 @@ document.addEventListener('click', function() {
 	  timer = null;
 	}
   }
-  
+
 // Add wheel event listener to increment or decrement the value
 minutesElement.addEventListener('wheel', function(event) {
-  event.preventDefault();
-  let newValue = parseInt(minutesElement.value) - Math.sign(event.deltaY);
-  if(newValue >= 0 && newValue <= 59) {
-    minutesElement.value = newValue.toString().padStart(2, '0');
-    countdown = minutesElement.value * 60 + secondsElement.value * 1; // Multiply minutes by 60 to convert to seconds
-    updateCountdown();
-  }
-});
-
-secondsElement.addEventListener('wheel', function(event) {
-  event.preventDefault();
-  let newValue = parseInt(secondsElement.value) - Math.sign(event.deltaY);
-  if(newValue >= 0 && newValue <= 59) {
-    secondsElement.value = newValue.toString().padStart(2, '0');
-    countdown = minutesElement.value * 60 + secondsElement.value * 1; // Multiply minutes by 60 to convert to seconds
-    updateCountdown();
-  }
-});
+	event.preventDefault();
+	deltaAccumulator += event.deltaY;
+	if (Math.abs(deltaAccumulator) > deltaThreshold) {
+	  let newValue = parseInt(minutesElement.value) - Math.sign(deltaAccumulator);
+	  if(newValue >= 0 && newValue <= 59) {
+		minutesElement.value = newValue.toString().padStart(2, '0');
+		countdown = minutesElement.value * 60 + secondsElement.value * 1;
+		updateCountdown();
+	  }
+	  deltaAccumulator = 0;  // Reset the accumulator
+	}
+  });
+  
+  secondsElement.addEventListener('wheel', function(event) {
+	event.preventDefault();
+	deltaAccumulator += event.deltaY;
+	if (Math.abs(deltaAccumulator) > deltaThreshold) {
+	  let newValue = parseInt(secondsElement.value) - Math.sign(deltaAccumulator);
+	  if(newValue >= 0 && newValue <= 59) {
+		secondsElement.value = newValue.toString().padStart(2, '0');
+		countdown = minutesElement.value * 60 + secondsElement.value * 1;
+		updateCountdown();
+	  }
+	  deltaAccumulator = 0;  // Reset the accumulator
+	}
+  });
 
 // Hide the control timer and start the countdown when the inputs lose focus
 minutesElement.addEventListener('blur', function() {
