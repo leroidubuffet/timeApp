@@ -5,10 +5,25 @@ let secondsElement = document.getElementById("seconds");
 
 let timer = null;
 let countdown = 0;
+let running = false;
 
-timerElement.addEventListener('click', function() {
+timerElement.addEventListener('dblclick', function() {
   // Show the control timer
   controlTimerElement.style.display = 'flex';
+});
+
+// Add click event listener to the entire document
+document.addEventListener('click', function() {
+  // Only start/stop the timer if the control timer is not displayed
+  if (controlTimerElement.style.display !== 'flex') {
+    if (running) {
+      clearInterval(timer);
+      running = false;
+    } else {
+      timer = setInterval(updateCountdown, 1000);
+      running = true;
+    }
+  }
 });
 
 function updateCountdown() {
@@ -20,8 +35,10 @@ function updateCountdown() {
     countdown--;
   } else {
     clearInterval(timer);
+    running = false;
   }
 }
+
 
 // Add wheel event listener to increment or decrement the value
 minutesElement.addEventListener('wheel', function(event) {
