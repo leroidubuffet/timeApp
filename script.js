@@ -5,7 +5,7 @@ let secondsElement = document.getElementById("seconds");
 
 let timer = null;
 let countdown = 0;
-let running = false;
+let timerRunning = false;
 
 timerElement.addEventListener('dblclick', function() {
   // Show the control timer
@@ -14,32 +14,33 @@ timerElement.addEventListener('dblclick', function() {
 
 // Add click event listener to the entire document
 document.addEventListener('click', function() {
-  // Only start/stop the timer if the control timer is not displayed
-  if (controlTimerElement.style.display !== 'flex') {
-    if (running) {
-      clearInterval(timer);
-      running = false;
-    } else {
-      timer = setInterval(updateCountdown, 1000);
-      running = true;
-    }
+	// Only start/stop the timer if the control timer is not displayed
+	if (controlTimerElement.style.display !== 'flex') {
+	  // Check if the timer is already running
+	  if (timer !== null) {
+		// Stop the timer
+		clearInterval(timer);
+		timer = null;
+	  } else {
+		// Start the timer
+		timer = setInterval(updateCountdown, 1000);
+	  }
+	}
+  });
+  
+  function updateCountdown() {
+	let minutes = Math.floor(countdown / 60).toString().padStart(2, '0');
+	let seconds = (countdown % 60).toString().padStart(2, '0');
+	timerElement.textContent = `${minutes}:${seconds}`;
+  
+	if (countdown > 0) {
+	  countdown--;
+	} else {
+	  clearInterval(timer);
+	  timer = null;
+	}
   }
-});
-
-function updateCountdown() {
-  let minutes = Math.floor(countdown / 60).toString().padStart(2, '0');
-  let seconds = (countdown % 60).toString().padStart(2, '0');
-  timerElement.textContent = `${minutes}:${seconds}`;
-
-  if (countdown > 0) {
-    countdown--;
-  } else {
-    clearInterval(timer);
-    running = false;
-  }
-}
-
-
+  
 // Add wheel event listener to increment or decrement the value
 minutesElement.addEventListener('wheel', function(event) {
   event.preventDefault();
