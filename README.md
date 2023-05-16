@@ -30,6 +30,11 @@ git clone https://github.com/leroidubuffet/timeApp.git
 cd timeapp
 python -m http.server 8000
 ```
+Kill the process with:
+
+```
+pkill -f "python -m http.server 8000"
+```
 
 The code uses [wakeLock](https://w3c.github.io/screen-wake-lock/) to keep your device from going to standby while the timer is running. Note that not all browsers support this API.
 
