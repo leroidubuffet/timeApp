@@ -10,16 +10,16 @@ It works best if added to your home screen on Android. Most browsers support thi
 
 ## Features
 
-- Set a timer with a custom duration.
-- Double click to reset the timer.
-- Visual indicators show when half the time has passed, and when there are five minutes and one minute remaining.
-- Audio indicators play when visual indicators are shown, and when the timer ends.
+- Set a timer with a custom duration
+- Double click to reset the timer
+- Visual indicators show when half the time has passed, and when there are five minutes and one minute remaining
+- Audio indicators play when the timer ends
 
 ## How to Use
 
-1. Double click on the minutes or seconds to set the duration for the timer. Choose and click on the number.
-2. Click on the timer to start or stop the timer.
-3. Double click on the : separator to reset the timer.
+1. Double click on the minutes or seconds to set the duration for the timer. Drag and click on the number
+2. Click on the timer to start or stop the timer
+3. Double click on the : separator to reset the timer
 
 ## Installation
 
