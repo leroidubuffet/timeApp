@@ -31,7 +31,7 @@ cd timeapp
 open index.html
 ```
 
-The code uses [wakeLock] (https://w3c.github.io/screen-wake-lock/) to keep your device from going to standby while the timer is running. Note that not all browsers support this API.
+The code uses [wakeLock](https://w3c.github.io/screen-wake-lock/) to keep your device from going to standby while the timer is running. Note that not all browsers support this API.
 
 ## Contributing
 
