@@ -17,9 +17,9 @@ It works best if added to your home screen on Android. Most browsers support thi
 
 ## How to Use
 
-1. Click on the minutes or seconds to set the duration for the timer.
+1. Double click on the minutes or seconds to set the duration for the timer. Choose and click on the number.
 2. Click on the timer to start or stop the timer.
-3. Double click on the timer to reset the timer.
+3. Double click on the : separatos to reset the timer.
 
 ## Installation
 
