@@ -24,6 +24,11 @@ createControlNumbers(minutesControl, 60);
 createControlNumbers(secondsControl, 59);
 toggleControls(false);
 
+// Intervals
+let halfTimeTimeoutId = null;
+let fiveMinutesLeftTimeoutId = null;
+let oneMinuteLeftTimeoutId = null;
+
 // WakeLock
 const requestWakeLock = async () => {
 	if ('wakeLock' in navigator) {
@@ -148,22 +153,25 @@ function startTimer(minutes, seconds) {
 		if (timeLeft === halfTime && totalTime >= 120) {
 			hideAllMessages();
 			halfTimeGoneElement.classList.remove('hidden');
-			setTimeout(function() {
-                halfTimeGoneElement.classList.add('hidden');
-            }, 30000);
+			clearTimeout(halfTimeTimeoutId);
+			halfTimeTimeoutId = setTimeout(function() {
+				halfTimeGoneElement.classList.add('hidden');
+			}, 30000);
 		} else if (timeLeft === fiveMinutesLeft && totalTime >= 600) {
 			hideAllMessages();
 			fiveMinutesLeftElement.classList.remove('hidden');
-			setTimeout(function() {
-                fiveMinutesLeftElement.classList.add('hidden');
-            }, 30000);
+			clearTimeout(fiveMinutesLeftTimeoutId);
+			fiveMinutesLeftTimeoutId = setTimeout(function() {
+				halfTimeGoneElement.classList.add('hidden');
+			}, 30000);
 		} else if (timeLeft === oneMinuteLeft && totalTime >= 180) {
 			hideAllMessages();
 			oneMinuteLeftElement.classList.remove('hidden');  
-			setTimeout(function() {
-                oneMinuteLeftElement.classList.add('hidden');
-            }, 30000);      
-		} else if (timeLeft === 0) {
+			clearTimeout(oneMinuteLeftTimeoutId);
+			oneMinuteLeftTimeoutId = setTimeout(function() {
+				halfTimeGoneElement.classList.add('hidden');
+			}, 30000);		
+		}else if (timeLeft === 0) {
 			hideAllMessages();
 		}
 		updateDisplay(minutes, seconds);
