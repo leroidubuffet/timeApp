@@ -9,6 +9,7 @@ const secondsControl = document.getElementById('seconds-control');
 // State Variables
 let intervalId = null;
 let isRunning = false;
+let wakeLock = null;
 
 // Event Listeners
 separatorEl.addEventListener('dblclick', resetTimer);
@@ -23,9 +24,41 @@ createControlNumbers(minutesControl, 60);
 createControlNumbers(secondsControl, 59);
 toggleControls(false);
 
+// WakeLock
+const requestWakeLock = async () => {
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+
+    wakeLock.addEventListener('release', () => {
+      console.log('Wake Lock was released');
+    });
+    console.log('Wake Lock is active');
+  }
+  catch(err) {
+    console.error(`${err.name}, ${err.message}`);
+  }
+};
+
+const releaseWakeLock = () => {
+  if (wakeLock !== null) {
+    console.log('releasing wakeLock');
+
+    wakeLock.release();
+    wakeLock = null;
+  }
+};
+
+// Automatically request the wake lock when the page loads
+requestWakeLock();
+
+// Optionally, you can set up an event to release the wake lock at some point
+// For example, when the page is being unloaded
+window.addEventListener('beforeunload', releaseWakeLock);
+
+
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js').then(
+        navigator.serviceWorker.register('./sw/service-worker.js').then(
             registration => {
                 console.log('ServiceWorker registered: ', registration);
             },
