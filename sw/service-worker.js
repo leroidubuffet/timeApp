@@ -1,11 +1,11 @@
 const CACHE_NAME = 'countdown-timer-pwa-v1';
 const FILES_TO_CACHE = [
 	'../',
-	'../public/index.html',
+	'../index.html',
 	'../public/manifest.json',
 	'../src/styles.css',
 	'../src/scripts/app.js',
-	'../public/imgs/icon-192.png',
+	'../public/imgs/icon-192.png', 
 	'../public/imgs/icon-512.png'
 ];
 
