@@ -12,8 +12,8 @@ let isRunning = false;
 
 // Event Listeners
 separatorEl.addEventListener('dblclick', resetTimer);
-minutesEl.addEventListener('click', showMinutesControl);
-secondsEl.addEventListener('click', showSecondsControl);
+minutesEl.addEventListener('dblclick', showMinutesControl);
+secondsEl.addEventListener('dblclick', showSecondsControl);
 timerEl.addEventListener('click', handleClick);
 minutesControl.addEventListener('click', handleControlClick);
 secondsControl.addEventListener('click', handleControlClick);
