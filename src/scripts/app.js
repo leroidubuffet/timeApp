@@ -58,7 +58,6 @@ requestWakeLock();
 // For example, when the page is being unloaded
 window.addEventListener('beforeunload', releaseWakeLock);
 
-
 if ('serviceWorker' in navigator) {
 	window.addEventListener('load', () => {
 		navigator.serviceWorker.register('./sw/service-worker.js').then(
@@ -129,6 +128,7 @@ function startTimer(minutes, seconds) {
 	const halfTimeGoneElement = document.getElementById('half-time-gone');
 	const fiveMinutesLeftElement = document.getElementById('five-minutes-left');
 	const oneMinuteLeftElement = document.getElementById('one-minute-left');
+	const audio = new Audio('./public/sounds/ping.wav');
 
 	intervalId = setInterval(() => {
 		seconds--;
@@ -140,6 +140,7 @@ function startTimer(minutes, seconds) {
 			minutes = 0;
 			seconds = 0;
 			clearInterval(intervalId);
+			audio.play(); // add this line to play the sound
 			isRunning = false;
 		}
 
