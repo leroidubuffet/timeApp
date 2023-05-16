@@ -2,7 +2,11 @@
 
 TimeApp is a simple and elegant timer application built with HTML, CSS, and JavaScript.
 
-The purpose of this timer os to assist facilitators and their aids keep control of time during group activities with minimum human intervention.
+The purpose of this timer os to assist facilitators and their aids keep control of time during group activities with minimum human intervention and fidgeting.
+
+The app has been deployed as a Progressive Web App for a universal lightweight distribution.
+
+It works best if added to your home screen on Android. Most browsers support this action. Works perfectly on Ecosia as of May 2023.
 
 ## Features
 
@@ -26,6 +30,8 @@ git clone https://github.com/leroidubuffet/timeApp.git
 cd timeapp
 open index.html
 ```
+
+The code uses [wakeLock] (https://w3c.github.io/screen-wake-lock/) to keep your device from going to standby while the timer is running. Note that not all browsers support this API.
 
 ## Contributing
 
