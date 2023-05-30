@@ -91,7 +91,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Thanks
-To [Daniela Rogoza](http://danielarogoza.com/) for her UX and UI design support.
+To [Daniela Rogoza](http://danielarogoza.com/) for the app name, and her UX and UI design support.
 
 
 License
