@@ -1,5 +1,8 @@
 # TimeApp
 
+The original idea comes from [Daniela Rogoza](http://danielarogoza.com/) who also provided UX and UI design support.
+
+
 TimeApp is a simple and elegant timer application built with HTML, CSS, and JavaScript.
 
 The purpose of this timer is to assist facilitators and their aids keep control of time during group activities with minimum human intervention and fidgeting.
@@ -89,10 +92,6 @@ Please note that the service worker file and the manifest file are essential to 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
-
-## Thanks
-To [Daniela Rogoza](http://danielarogoza.com/) for the app name, and her UX and UI design support.
-
 
 License
 [MIT](https://opensource.org/license/mit/)
