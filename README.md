@@ -8,7 +8,8 @@ The app has been deployed as a Progressive Web App for a universal lightweight d
 
 PWAs have the unique ability to offer a high-quality user experience that is comparable to, and sometimes even better than, native apps. They are reliable, fast, and engaging.
 
-It works best if added to your home screen on Android. Most browsers support this action. Works perfectly on Ecosia as of May 2023.
+It works best if added to your home screen on Android. Most browsers support this action. Works perfectly on Ecosia as of May 2023. For updated information on PWA and browser compatibility visit [caniuse.com](https://caniuse.com/?search=PWA). 
+
 
 ## Features
 
@@ -39,8 +40,6 @@ pkill -f "python -m http.server 8000"
 ```
 
 The code uses [wakeLock](https://w3c.github.io/screen-wake-lock/) to keep your device from going to standby while the timer is running. Note that not all browsers support this API.
-
-For updated information on PWA and browser compatibility visit [caniuse.com](https://caniuse.com/?search=PWA). 
 
 ## Project Structure
 
