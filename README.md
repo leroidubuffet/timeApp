@@ -73,7 +73,7 @@ Here's an overview of the purpose of each file and directory:
 
 - `icon-192.png` and `icon-512.png`: These are the icons for the app, used in various places like the home screen, task switcher, splash screen, etc. They are referenced in the manifest file.
 
-- `sounds`: This directory contains sound files that the app uses. In this case, it includes ping.wav.
+- `sounds`: This directory contains sound files that the app uses. In this case, it includes `ping.wav`, the bell sound that plays three times when time is up.
 
 - `manifest.json`: This is the web app manifest file. It provides information about the application (such as name, author, icon, and description) in a JSON text file. The manifest is necessary for the PWA to be installable and run in full-screen.
 
